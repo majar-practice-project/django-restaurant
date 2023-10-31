@@ -12,5 +12,6 @@ urlpatterns = [
     path('menu/<pk>', views.Recipe.as_view(), name='recipe'),
 
     path('ingredients/add', views.CreateIngredient.as_view(), name='create_ingredient'),
-    path('ingredients/<pk>/update', views.UpdateIngredient.as_view(), name='update_ingredient')
+    path('ingredients/<pk>/update', views.UpdateIngredient.as_view(), name='update_ingredient'),
+    path('ingredients/<pk>/delete', views.DeleteIngredient.as_view(), name='delete_ingredient'),
 ]

@@ -10,6 +10,7 @@
         <th>Ingredients</th>
         <th>Quantity</th>
         <th>Unit</th>
+        <th>Action</th>
         <!-- <th>Price per unit</th> -->
       </tr>
     </thead>
@@ -24,6 +25,9 @@
             </td>
             <td>
                 {{ ingredient.get_measure_unit_display }}
+            </td>
+            <td>
+                <a href="{% url 'delete_ingredient' ingredient.id %}">❌</a>
             </td>
         </tr>
         {% comment %}
