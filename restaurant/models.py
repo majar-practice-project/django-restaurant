@@ -10,9 +10,9 @@ class Ingredient(models.Model):
         NA = 'na', gettext_lazy('N/A')
 
     name = models.CharField(max_length=30)
+    quantity = models.FloatField(default=0)
     measure_unit = models.CharField(max_length=5, choices=IngredientUnit.choices, default=IngredientUnit.TEA_SPOON)
     unit_price = models.FloatField(default=0)
-    quantity = models.FloatField(default=0)
 
     def __str__(self):
         return self.name
