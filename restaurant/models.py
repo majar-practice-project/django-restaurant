@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 
 class Ingredient(models.Model):
@@ -16,6 +17,9 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse_lazy('inventory')
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=50)
@@ -23,6 +27,9 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse_lazy('menu')
 
 class IngredientRequirement(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
