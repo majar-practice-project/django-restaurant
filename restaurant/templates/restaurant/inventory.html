@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Restaurant - Inventory{% endblock %}
+{% block content %}
+<div>
+  <h2>Inventory</h2>
+  <table class="line-table">
+    <thead>
+      <tr>
+        <th>Ingredients</th>
+        <th>Quantity</th>
+        <th>Unit</th>
+        <!-- <th>Price per unit</th> -->
+      </tr>
+    </thead>
+    <tbody>
+    {% for ingredient in object_list %}
+        <tr>
+            <td>
+                {{ ingredient.name|title }}
+            </td>
+            <td>
+                {{ ingredient.quantity }}
+            </td>
+            <td>
+                {{ ingredient.get_measure_unit_display }}
+            </td>
+        </tr>
+        {% comment %}
+            <tr>
+            <td>
+                <a href="{% url "update_station" station.id %}">{{ station.name }}</a>
+                {% if station.accessible %}<span>  ♿️ </span>{% endif %}
+            </td>
+            <td>
+                {% for stop in station.stop_set.all %}{{stop.line.name}}, {% endfor %}
+            </td>
+            <td><a href="{% url "delete_station" station.id %}" style="text-decoration: none; color: inherit;">❌</a></td>
+            </tr>
+        {% endcomment %}
+    {% endfor %}
+    </tbody>
+  </table>
+  {% comment %}
+  <a href="{% url "create_station" %}" style="display: inherit; text-align: center; border-radius: 15px; text-decoration: none; color: inherit; padding: 4px; background-color: lightgreen;">➕</a>
+  {% endcomment %}
+</div>
+{% endblock %}
