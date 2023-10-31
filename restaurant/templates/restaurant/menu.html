@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Restaurant - Menu{% endblock %}
+{% block content %}
+
+<div>
+    <h2>Menu</h2>
+    <table class="line-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for item in object_list %}
+          <tr>
+              <td>
+                  {{ item.name|title }}
+              </td>
+              <td>
+                  {{ item.price }}
+              </td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endblock %}

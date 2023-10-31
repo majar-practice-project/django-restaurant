@@ -27,3 +27,7 @@ def logout_view(request):
 class Ingredients(ListView):
    model = Ingredient
    template_name = 'restaurant/inventory.html'
+
+class Menu(ListView):
+   model = MenuItem
+   template_name = 'restaurant/menu.html'
