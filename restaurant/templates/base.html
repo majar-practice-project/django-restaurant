@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'restaurant/style.css' %}"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{% block title %}Restaurant{% endblock %}</title>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="header-first-row">
+            <!-- <img src="{% static 'weeklydessert/Dessert.png' %}" > -->
+              {% if user.username %}
+                {% comment %}
+                  <a href="{% url 'logout' %}"><button>Logout</button></a>
+                {% endcomment%}
+            {% endif %}
+            <div class="header-content">
+              <h1 class="header-title">Restaurant</h1>
+              {% if user.username %}
+                  <h4 class="header-greet">Welcome {{ user.username }}!</h4>
+              {% else %}
+                {% comment %}
+                  <a href="{% url 'login' %}"><button>Login</button></a>
+                {% endcomment %}
+              {% endif %}
+            </div>
+          </div>
+        <nav class="navbar">
+          <a class="nav-item" href="{% url 'index' %}">Home</a>
+            {% comment %}
+              <!-- <a class="nav-item" href="{% url 'lines_view' %}">Lines</a>
+              <a class="nav-item" href="{% url 'stations_view' %}">Stations</a>
+              <a class="nav-item" href="{% url 'stops_view' %}">Stops</a> -->
+            {% endcomment %}
+        </nav>
+      </header>
+      <main>{% block content %}{% endblock %}</main>
+    </div>
+  </body>
+</html>
