@@ -40,10 +40,7 @@
         <nav class="navbar">
           <a class="nav-item" href="{% url 'index' %}">Home</a>
           <a class="nav-item" href="{% url 'inventory' %}">Inventory</a>
-            {% comment %}
-              <a class="nav-item" href="{% url 'stations_view' %}">Stations</a>
-              <a class="nav-item" href="{% url 'stops_view' %}">Stops</a>
-            {% endcomment %}
+          <a class="nav-item" href="{% url 'menu' %}">Menu</a>
         </nav>
       </header>
       <main>{% block content %}{% endblock %}</main>
