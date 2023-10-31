@@ -5,6 +5,9 @@ class Ingredient(models.Model):
     class IngredientUnit(models.TextChoices):
         TEA_SPOON = 'tbsp', gettext_lazy('teaspoon (tbsp)')
         POUND = 'lbs', gettext_lazy('pound (lbs)')
+        OUNCE = 'oz', gettext_lazy('ounce (oz)')
+        GRAM = 'g', gettext_lazy('gram (g)')
+        NA = 'na', gettext_lazy('N/A')
 
     name = models.CharField(max_length=30)
     measure_unit = models.CharField(max_length=5, choices=IngredientUnit.choices, default=IngredientUnit.TEA_SPOON)
