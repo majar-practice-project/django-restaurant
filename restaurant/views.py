@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 
@@ -31,3 +31,7 @@ class Ingredients(ListView):
 class Menu(ListView):
    model = MenuItem
    template_name = 'restaurant/menu.html'
+
+class Recipe(DetailView):
+   model = MenuItem
+   template_name = 'restaurant/recipe.html'

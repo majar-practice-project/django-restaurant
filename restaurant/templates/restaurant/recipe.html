@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Restaurant - {{ object.name|title }}{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Recipe: {{ object.name|title }}</h2>
+    <table class="line-table">
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in object.ingredientrequirement_set.all %}
+            <tr>
+                <td>
+                    {{ item.ingredient.name|title }}
+                </td>
+                <td>
+                    {{ item.quantity }} {{ item.ingredient.get_measure_unit_display}}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
