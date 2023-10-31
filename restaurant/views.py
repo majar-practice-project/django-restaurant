@@ -2,7 +2,7 @@ from typing import Any
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -41,6 +41,15 @@ class CreateIngredient(LoginRequiredMixin, CreateView):
       context['form_heading'] = 'Add Ingredient'
       return context
 
+class UpdateIngredient(LoginRequiredMixin, UpdateView):
+   model = Ingredient
+   template_name = 'restaurant/form.html'
+   form_class = forms.IngredientForm
+
+   def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+      context = super().get_context_data(**kwargs)
+      context['form_heading'] = 'Update Ingredient'
+      return context
 
 class Menu(ListView):
    model = MenuItem

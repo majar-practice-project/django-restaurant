@@ -17,7 +17,7 @@
     {% for ingredient in object_list %}
         <tr>
             <td>
-                {{ ingredient.name|title }}
+                <a href="{% url 'update_ingredient' ingredient.id %}">{{ ingredient.name|title }}</a>
             </td>
             <td>
                 {{ ingredient.quantity }}
