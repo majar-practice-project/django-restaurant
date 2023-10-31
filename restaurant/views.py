@@ -1,4 +1,5 @@
 from typing import Any
+from django.forms import inlineformset_factory
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -59,6 +60,16 @@ class DeleteIngredient(LoginRequiredMixin, DeleteView):
 class Menu(ListView):
    model = MenuItem
    template_name = 'restaurant/menu.html'
+
+class CreateMenuItem(LoginRequiredMixin, CreateView):
+   model = MenuItem
+   template_name = 'restaurant/form.html'
+   form_class = forms.MenuItemForm
+
+   def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+      context = super().get_context_data(**kwargs)
+      context['form_heading'] = 'Add Menu Item'
+      return context
 
 class Recipe(DetailView):
    model = MenuItem
