@@ -18,7 +18,7 @@
     {% for ingredient in object_list %}
         <tr>
             <td>
-                <a href="{% url 'update_ingredient' ingredient.id %}">{{ ingredient.name|title }}</a>
+                {{ ingredient.name|title }}
             </td>
             <td>
                 {{ ingredient.quantity }}
@@ -27,6 +27,7 @@
                 {{ ingredient.get_measure_unit_display }}
             </td>
             <td>
+                <a href="{% url 'update_ingredient' ingredient.id %}">🖉</a>
                 <a href="{% url 'delete_ingredient' ingredient.id %}">❌</a>
             </td>
         </tr>
