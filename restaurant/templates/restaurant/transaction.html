@@ -20,9 +20,7 @@
                   {{ purchase.timestamp }}
               </td>
               <td>
-                    {% for item in purchase.items.all %}
-                        <br>{{ item }}
-                    {% endfor %}
+                    {{ purchase.item }}
               </td>
               <td>
                 {% comment %}

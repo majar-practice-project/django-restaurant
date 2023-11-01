@@ -44,7 +44,7 @@ class IngredientRequirement(models.Model):
 
 class Purchase(models.Model):
     timestamp = models.DateTimeField()
-    items = models.ManyToManyField(MenuItem)
+    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.timestamp} - {[i.name for i in self.items.all()]}'
+        return f'{self.timestamp} - {self.item}'
