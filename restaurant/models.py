@@ -18,6 +18,9 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
     
+    def get_name_with_unit(self):
+        return f'{self.name} - {self.get_measure_unit_display()}'
+    
     def get_absolute_url(self):
         return reverse_lazy('inventory')
 
