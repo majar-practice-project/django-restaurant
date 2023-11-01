@@ -160,3 +160,10 @@ class DeleteMenuItem(LoginRequiredMixin, DeleteView):
 class Transaction(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = 'restaurant/transaction.html'
+
+
+class CreatePurchase(LoginRequiredMixin, CreateView):
+    model = Purchase
+    form_class = forms.PurchaseForm
+    template_name = 'restaurant/form.html'
+    success_url = reverse_lazy('transaction')

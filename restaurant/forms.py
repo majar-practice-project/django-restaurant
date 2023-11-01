@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import HiddenInput
 
-from .models import Ingredient, MenuItem, IngredientRequirement
+from .models import Ingredient, MenuItem, IngredientRequirement, Purchase
 
 class IngredientForm(forms.ModelForm):
     class Meta:
@@ -30,3 +30,13 @@ class IngredientRequirementUpdateForm(forms.ModelForm):
     class Meta:
         model = IngredientRequirement
         fields = ('quantity', )
+
+class PurchaseForm(forms.ModelForm):
+    class Meta:
+        model = Purchase
+        fields = '__all__'
+
+        # Includes a datetime picker for datetime field
+        widgets = {
+            'timestamp': forms.DateTimeInput(format=('%Y-%m-%dT%H:%M'), attrs={'type': 'datetime-local'}),
+        }
