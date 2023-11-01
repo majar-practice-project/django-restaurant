@@ -25,3 +25,8 @@ class IngredientRequirementForm(forms.ModelForm):
     class Meta:
         model = IngredientRequirement
         fields = '__all__'
+
+class IngredientRequirementUpdateForm(forms.ModelForm):
+    class Meta:
+        model = IngredientRequirement
+        fields = ('quantity', )

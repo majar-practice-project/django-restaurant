@@ -86,7 +86,7 @@ class CreateMenuIngredient(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context['form_heading'] = f"Add Ingredient to {MenuItem.objects.get(pk=self.kwargs['pk'].title())}"
+        context['form_heading'] = f"Add Ingredient to {MenuItem.objects.get(pk=self.kwargs['pk']).__str__().title()}"
         return context
 
     def get_form_kwargs(self) -> dict[str, Any]:
@@ -101,6 +101,22 @@ class CreateMenuIngredient(LoginRequiredMixin, CreateView):
 
         return success_url
 
+
+class UpdateMenuIngredient(LoginRequiredMixin, UpdateView):
+    model = IngredientRequirement
+    form_class = forms.IngredientRequirementUpdateForm
+    template_name = 'restaurant/form.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['form_heading'] = f"Update Ingredient {IngredientRequirement.objects.get(pk=self.kwargs['fk']).ingredient.get_name_with_unit()}"
+        return context
+    
+    def get_success_url(self) -> str:
+        pk = self.kwargs['pk']
+        success_url = reverse('recipe', kwargs={'pk': pk})
+
+        return success_url
 
 class Recipe(DetailView):
     model = MenuItem
