@@ -47,4 +47,4 @@ class Purchase(models.Model):
     items = models.ManyToManyField(MenuItem)
 
     def __str__(self):
-        return f'{self.timestamp} - {self.items}'
+        return f'{self.timestamp} - {[i.name for i in self.items.all()]}'

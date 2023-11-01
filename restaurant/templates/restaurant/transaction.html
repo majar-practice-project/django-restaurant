@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Restaurant - Transaction{% endblock %}
+{% block content %}
+
+<div>
+    <h2>Menu</h2>
+    <table class="line-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Items</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for purchase in object_list %}
+          <tr>
+              <td>
+                  {{ purchase.timestamp }}
+              </td>
+              <td>
+                    {% for item in purchase.items.all %}
+                        <br>{{ item }}
+                    {% endfor %}
+              </td>
+              <td>
+                {% comment %}
+                <a href="{% url 'update_menu_item' item.id %}">🖉</a>
+                <a href="{% url 'delete_menu_item' item.id %}">❌</a>
+                {% endcomment %}
+            </td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% comment %}
+    <a href="{% url 'create_menu_item' %}" style="display: inherit; text-align: center; border-radius: 15px; text-decoration: none; color: inherit; padding: 4px; background-color: lightgreen;">➕ Add new Item</a>
+    {% endcomment %}
+  </div>
+  {% endblock %}

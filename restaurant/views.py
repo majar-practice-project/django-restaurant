@@ -149,8 +149,14 @@ class UpdateMenuItem(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['form_heading'] = 'Update Menu Item'
         return context
-    
+
+
 class DeleteMenuItem(LoginRequiredMixin, DeleteView):
     model = MenuItem
     template_name = 'restaurant/delete_form.html'
     success_url = reverse_lazy('menu')
+
+
+class Transaction(LoginRequiredMixin, ListView):
+    model = Purchase
+    template_name = 'restaurant/transaction.html'
