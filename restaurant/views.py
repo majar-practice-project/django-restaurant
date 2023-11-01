@@ -1,6 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.db.models import Model
+from django.db.models import Model, Sum, Count
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -13,6 +13,17 @@ from . import forms
 
 class HomeView(TemplateView):
     template_name = "restaurant/home.html"
+
+    def get_total_cost(self):
+        queryset = Purchase.objects.values('item__ingredientrequirement__ingredient__unit_price').annotate(total_quantity=Sum('item__ingredientrequirement__quantity'))
+        return sum([query['item__ingredientrequirement__ingredient__unit_price'] * query['total_quantity'] for query in queryset])
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['total_revenue'] = Purchase.objects.aggregate(Sum('item__price'))['item__price__sum']
+        context['total_cost'] = self.get_total_cost()
+        context['net_profits'] = context['total_revenue'] - context['total_cost']
+        return context
 
 
 class Login(LoginView):

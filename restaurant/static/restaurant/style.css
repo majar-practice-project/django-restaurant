@@ -19,7 +19,7 @@ margin: 30px 0;
 
 header {
 background-color: #fff5ff;
-min-height: 200px;
+min-height: 100px;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -34,7 +34,7 @@ display: flex;
 }
 
 .navbar {
-margin-top: 50px;
+margin-top: 30px;
 display: flex;
 width: 100%;
 }
@@ -55,13 +55,13 @@ font-weight: bold;
 
 .header-title {
 font-size: 3em;
-padding: 0px 50px 0 20px;
+padding: 0px 50px 0 0px;
 margin: auto 0;
 color: #3a10e5;
 }
 
 main {
-padding: 40px;
+padding: 0 40px 40px 40px;
 }
 
 main h2 {

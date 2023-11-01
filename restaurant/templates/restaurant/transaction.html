@@ -20,7 +20,7 @@
                   {{ purchase.timestamp }}
               </td>
               <td>
-                    {{ purchase.item }}
+                    {{ purchase.item|title }}
               </td>
               <td>
                 <a href="{% url 'update_purchase' purchase.id %}">🖉</a>
