@@ -167,3 +167,20 @@ class CreatePurchase(LoginRequiredMixin, CreateView):
     form_class = forms.PurchaseForm
     template_name = 'restaurant/form.html'
     success_url = reverse_lazy('transaction')
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['form_heading'] = 'Add new Purchase'
+        return context
+
+
+class UpdatePurchase(LoginRequiredMixin, UpdateView):
+    model = Purchase
+    form_class = forms.PurchaseForm
+    template_name = 'restaurant/form.html'
+    success_url = reverse_lazy('transaction')
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['form_heading'] = 'Update Purchase'
+        return context

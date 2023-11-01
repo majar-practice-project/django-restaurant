@@ -4,7 +4,7 @@
 {% block content %}
 
 <div>
-    <h2>Menu</h2>
+    <h2>Transaction</h2>
     <table class="line-table">
       <thead>
         <tr>
@@ -23,8 +23,8 @@
                     {{ purchase.item }}
               </td>
               <td>
+                <a href="{% url 'update_purchase' purchase.id %}">🖉</a>
                 {% comment %}
-                <a href="{% url 'update_menu_item' item.id %}">🖉</a>
                 <a href="{% url 'delete_menu_item' item.id %}">❌</a>
                 {% endcomment %}
             </td>
