@@ -23,10 +23,8 @@
                     {{ item.quantity }} {{ item.ingredient.get_measure_unit_display}}
                 </td>
                 <td>
-                    <a href="{% url 'update_menu_item_ingredient' object.id item.id %}">🖉</a>
-                    {% comment %}
-                    <a href="{% url 'delete_ingredient' item.id %}">❌</a>
-                    {% endcomment %}
+                    <a href="{% url 'update_menu_item_ingredient' pk=object.id fk=item.id %}">🖉</a>
+                    <a href="{% url 'delete_menu_item_ingredient' pk=object.id fk=item.id %}">❌</a>
                 </td>
             </tr>
         {% endfor %}

@@ -39,6 +39,9 @@ class IngredientRequirement(models.Model):
     quantity = models.FloatField(default=0)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.quantity} {self.ingredient.measure_unit} of {self.ingredient.name} in {self.menu_item}'
+
 class Purchase(models.Model):
     timestamp = models.DateTimeField()
     items = models.ManyToManyField(MenuItem)

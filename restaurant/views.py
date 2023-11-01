@@ -1,6 +1,6 @@
 from typing import Any
-from django.forms import inlineformset_factory
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.db.models.query import QuerySet
+from django.db.models import Model
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -107,10 +107,26 @@ class UpdateMenuIngredient(LoginRequiredMixin, UpdateView):
     form_class = forms.IngredientRequirementUpdateForm
     template_name = 'restaurant/form.html'
 
+    def get_object(self, queryset: QuerySet[Any] | None = ...) -> Model:
+        return IngredientRequirement.objects.get(pk=self.kwargs['fk'])
+
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['form_heading'] = f"Update Ingredient {IngredientRequirement.objects.get(pk=self.kwargs['fk']).ingredient.get_name_with_unit()}"
         return context
+    
+    def get_success_url(self) -> str:
+        pk = self.kwargs['pk']
+        success_url = reverse('recipe', kwargs={'pk': pk})
+
+        return success_url
+
+class DeleteMenuIngredient(LoginRequiredMixin, DeleteView):
+    model = IngredientRequirement
+    template_name = 'restaurant/delete_form.html'
+
+    def get_object(self, queryset: QuerySet[Any] | None = ...) -> Model:
+        return IngredientRequirement.objects.get(pk=self.kwargs['fk'])
     
     def get_success_url(self) -> str:
         pk = self.kwargs['pk']
