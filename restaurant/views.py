@@ -184,3 +184,9 @@ class UpdatePurchase(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['form_heading'] = 'Update Purchase'
         return context
+    
+
+class DeletePurchase(LoginRequiredMixin, DeleteView):
+    model = Purchase
+    template_name = 'restaurant/delete_form.html'
+    success_url = reverse_lazy('transaction')

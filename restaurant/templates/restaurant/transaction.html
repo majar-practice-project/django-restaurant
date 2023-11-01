@@ -24,9 +24,7 @@
               </td>
               <td>
                 <a href="{% url 'update_purchase' purchase.id %}">🖉</a>
-                {% comment %}
-                <a href="{% url 'delete_menu_item' item.id %}">❌</a>
-                {% endcomment %}
+                <a href="{% url 'delete_purchase' purchase.id %}">❌</a>
             </td>
           </tr>
       {% endfor %}
