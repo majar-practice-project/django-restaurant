@@ -10,6 +10,7 @@
         <tr>
           <th>Item</th>
           <th>Price</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,12 @@
               <td>
                   {{ item.price }}
               </td>
+              <td>
+                <a href="{% url 'update_menu_item' item.id %}">🖉</a>
+                {% comment %}
+                <a href="{% url 'delete_menu_item_ingredient' pk=object.id fk=item.id %}">❌</a>
+                {% endcomment %}
+            </td>
           </tr>
       {% endfor %}
       </tbody>

@@ -137,3 +137,15 @@ class DeleteMenuIngredient(LoginRequiredMixin, DeleteView):
 class Recipe(DetailView):
     model = MenuItem
     template_name = 'restaurant/recipe.html'
+
+
+class UpdateMenuItem(LoginRequiredMixin, UpdateView):
+    model = MenuItem
+    form_class = forms.MenuItemForm
+    template_name = 'restaurant/form.html'
+    success_url = reverse_lazy('menu')
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['form_heading'] = 'Update Menu Item'
+        return context
