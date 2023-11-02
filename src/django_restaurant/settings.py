@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import json
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,13 +20,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+KEYSDIR = BASE_DIR / "keys.json"
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_t&*bq1_!1my6+g06-01c8i17=nam-m=ermu#dvd(=zur0pwoe'
+with open(KEYSDIR) as k:
+    project_keys = json.loads(k.read())
+
+def getKey(setting,project_keys=project_keys):
+    try:
+        return project_keys[setting]
+    except KeyError:
+        errorMessage = "Set the {} env var".format(setting)
+        raise ImproperlyConfigured(errorMessage)
+
+SECRET_KEY = getKey("SECRETKEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
+# Enter host name here for deployment
 ALLOWED_HOSTS = []
 
 
