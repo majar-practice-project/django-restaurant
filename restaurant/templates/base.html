@@ -21,19 +21,12 @@
       <header>
         <div class="header-first-row">
             <!-- <img src="{% static 'weeklydessert/Dessert.png' %}" > -->
-              {% if user.username %}
-                {% comment %}
-                  <a href="{% url 'logout' %}"><button>Logout</button></a>
-                {% endcomment%}
-            {% endif %}
             <div class="header-content">
               <h1 class="header-title">Yumyum Restaurant</h1>
               {% if user.username %}
-                  <h4 class="header-greet">Welcome {{ user.username }}!</h4>
+                  <h4 class="header-greet">Welcome {{ user.username }}! <span><a href="{% url 'logout' %}">➡️Logout</a></span></h4>
               {% else %}
-                {% comment %}
-                  <a href="{% url 'login' %}"><button>Login</button></a>
-                {% endcomment %}
+                  <h4><a href="{% url 'login' %}">⎆Login</a></h4>
               {% endif %}
             </div>
           </div>
