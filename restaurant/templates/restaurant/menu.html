@@ -10,7 +10,9 @@
         <tr>
           <th>Item</th>
           <th>Price</th>
+          {% if user.is_authenticated %}
           <th>Action</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -22,14 +24,18 @@
               <td>
                   {{ item.price }}
               </td>
+              {% if user.is_authenticated %}
               <td>
                 <a href="{% url 'update_menu_item' item.id %}">🖉</a>
                 <a href="{% url 'delete_menu_item' item.id %}">❌</a>
-            </td>
+              </td>
+              {% endif %}
           </tr>
       {% endfor %}
       </tbody>
     </table>
+    {% if user.is_authenticated %}
     <a href="{% url 'create_menu_item' %}" style="display: inherit; text-align: center; border-radius: 15px; text-decoration: none; color: inherit; padding: 4px; background-color: lightgreen;">➕ Add new Item</a>
+    {% endif %}
   </div>
   {% endblock %}
